@@ -13,6 +13,7 @@ const [levelNumber, file] = args;
 
 // Map numbers to folder names
 const levelMap: Record<string, string> = {
+  "0": "language-basics",
   "1": "level-1-basic",
   "2": "level-2-intermediate",
   "3": "level-3-advanced",
