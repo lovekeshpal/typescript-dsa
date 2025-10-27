@@ -23,15 +23,19 @@ const folder = levelMap[levelNumber];
 
 if (!folder) {
   console.error(`❌ Invalid level: ${levelNumber}`);
-  console.error("👉 Use 1, 2, or 3");
+  console.error("👉 Use 0, 1, 2, or 3");
   process.exit(1);
 }
 
 const fullPath = path.resolve(__dirname, folder, file);
+const tsNodePath = path.resolve(__dirname, "../node_modules/.bin/ts-node");
 
 console.log(`🚀 Running: ${folder}/${file}\n`);
 
-const child = spawn("ts-node", [fullPath], { stdio: "inherit" });
+const child = spawn(tsNodePath, [fullPath], {
+  stdio: "inherit",
+  shell: true, // Add this for Windows compatibility
+});
 
 child.on("close", (code) => {
   process.exit(code ?? 0);
